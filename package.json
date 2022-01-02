@@ -1,0 +1,25 @@
+{
+  "name": "notes-app-node",
+  "version": "1.0.0",
+  "description": "A multi-user notes application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankhart2018/notes-app-node.git"
+  },
+  "keywords": [
+    "notes",
+    "node.js",
+    "app",
+    "CRUD"
+  ],
+  "author": "Siddhartha Dhar Choudhury",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frankhart2018/notes-app-node/issues"
+  },
+  "homepage": "https://github.com/frankhart2018/notes-app-node#readme"
+}
