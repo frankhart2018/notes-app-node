@@ -2,6 +2,10 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const accountRoutes = require('./routes/account');
+
+const errorController = require('./controller/error');
+
 const mongoConnect = require('./utils/dbcon');
 
 
@@ -13,12 +17,9 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res, next) => {
-    res.render('index', {
-        pageTitle: 'Notes App::Home',
-        path: '/',
-    });
-});
+app.use(accountRoutes);
+
+app.use(errorController.get404);
 
 mongoConnect.mongoConnect(() => {
     app.listen(8080);

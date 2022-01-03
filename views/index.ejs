@@ -2,5 +2,36 @@
 </head>
 <body>
     <h1>Welcome to Notes App</h1>
+
+    <div class="container">
+        <form action="/register-user" method="POST">
+            <p>
+                <label for="name">Name:</label><br>
+                <input type="text" name="name" id="name" placeholder="Enter your name"> 
+            </p>
+
+            <p>
+                <label for="email">Email:</label>
+                <br>
+                <input type="email" name="email" id="email" placeholder="Enter your email">
+            </p>
+
+            <p>
+                <label for="password">Password:</label>
+                <br>
+                <input type="password" name="password" id="password" placeholder="Enter your password">
+            </p>
+
+            <p>
+                <label for="cpassword">Confirm Password: </label>
+                <br>
+                <input type="password" name="cpassword" id="cpassword" placeholder="Confirm your password">
+            </p>
+
+            <p>
+                <input type="submit" value="Register">
+            </p>
+        </form>
+    </div>
 </body>
 </html>
