@@ -9,9 +9,22 @@ class User {
         this.password = password;
     }
 
-    save() {
+    async save() {
         const db = mongoConnect.getDb();
-        return db.collection('users').insertOne(this);
+
+        let user = await User.fetchByEmail(this.email);
+
+        if (!user) {
+            return db.collection('users').insertOne(this);
+        } else {
+            throw 'User already exists';
+        }
+    }
+
+    static fetchByEmail(email) {
+        const db = mongoConnect.getDb();
+
+        return db.collection('users').findOne({ email: email });
     }
 }
 

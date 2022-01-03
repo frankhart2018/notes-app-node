@@ -5,11 +5,6 @@
 
     <div class="container">
         <p>
-            <label for="name">Name:</label><br>
-            <input type="text" name="name" id="name" placeholder="Enter your name"> 
-        </p>
-
-        <p>
             <label for="email">Email:</label>
             <br>
             <input type="email" name="email" id="email" placeholder="Enter your email">
@@ -22,18 +17,12 @@
         </p>
 
         <p>
-            <label for="cpassword">Confirm Password: </label>
-            <br>
-            <input type="password" name="cpassword" id="cpassword" placeholder="Confirm your password">
-        </p>
-
-        <p>
-            <input type="button" value="Register" id="register">
+            <input type="button" value="Login" id="login">
         </p>
     </div>
 
     <div>
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Don't have an account? <a href="/">Register</a></p>
     </div>
 
     <%- include('./includes/js-includes.ejs', {js_file: js_file}) %>

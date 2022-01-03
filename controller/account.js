@@ -26,6 +26,19 @@ exports.postRegisterUser = (req, res, next) => {
             }));
         })
         .catch(err => {
-            console.log(err);
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({
+                 "icon": "error",
+                 "title": "Error",
+                 "text": "User already exists!", 
+            }));
         });
+};
+
+exports.getLogin = (req, res, next) => {
+    res.render('login', {
+        pageTitle: 'Notes App::Login',
+        path: '/login',
+        js_file: 'login.js',
+    });
 };
