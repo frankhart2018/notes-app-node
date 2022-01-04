@@ -1,0 +1,23 @@
+<%- include('./includes/header.ejs') %>
+</head>
+<body>
+    <h1>Add a new note</h1>
+
+    <div>
+        <button onclick="location.href='/notes';">Go back</button>
+    </div>
+
+    <div class="container">
+        <p>
+            <label for="name">Note:</label><br>
+            <input type="text" name="note" id="note" placeholder="Enter your name"> 
+        </p>
+
+        <p>
+            <input type="button" value="Add Note" id="add-note">
+        </p>
+    </div>
+
+    <%- include('./includes/js-includes.ejs', {js_file: js_file}) %>
+</body>
+</html>

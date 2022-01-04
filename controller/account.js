@@ -1,9 +1,8 @@
 const User = require('../model/user');
-
-let loggedInUser = null;
+const userSession = require('./user-data');
 
 exports.getIndex = (req, res, next) => {
-    if (loggedInUser) {
+    if (userSession.getUser()) {
         res.redirect('/notes');
     } else {
         res.render('index', {
@@ -36,13 +35,13 @@ exports.postRegisterUser = (req, res, next) => {
             res.end(JSON.stringify({
                  "icon": "error",
                  "title": "Error",
-                 "text": "User already exists!", 
+                 "text": err, 
             }));
         });
 };
 
 exports.getLogin = (req, res, next) => {
-    if (loggedInUser) {
+    if (userSession.getUser()) {
         res.redirect('/notes');
     } else {
         res.render('login', {
@@ -59,7 +58,7 @@ exports.postLogin = (req, res, next) => {
 
     User.checkLogin(email, password)
         .then(user => {
-            loggedInUser = user;
+            userSession.setUser(user);
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({
                  "icon": "success",
@@ -80,6 +79,6 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.getLogout = (req, res, next) => {
-    loggedInUser = null;
+    userSession.setUser(null);
     res.redirect('/');
 };

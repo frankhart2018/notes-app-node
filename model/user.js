@@ -7,6 +7,7 @@ class User {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.notes = [];
     }
 
     async save() {
@@ -19,6 +20,22 @@ class User {
         }
             
         throw 'User already exists!';
+    }
+
+    async addNote(note) {
+        const db = mongoConnect.getDb();
+
+        this.notes.push(note);
+
+        if (!user) {
+            throw 'User does not exist!';
+        }
+
+        return db.collection('user').updateOne({ 
+            email: this.email 
+        }, { 
+            $push: { notes: note } 
+        });
     }
 
     static fetchByEmail(email) {
