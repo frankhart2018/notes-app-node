@@ -54,6 +54,7 @@ exports.postLogin = (req, res, next) => {
                  "icon": "success",
                  "title": "Success",
                  "text": "Login successful!", 
+                 "url": "/notes",
             }));
         })
         .catch(err => {

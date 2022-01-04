@@ -5,7 +5,7 @@ $(document).ready(() => {
             "email": ["empty", "email"],
             "password": ["empty"],
         }
-        validate_and_post("/login-user", data, swal_ajax_post_reload);
+        validate_and_post("/login-user", data, swal_ajax_post_redirect);
     });
 
 });
