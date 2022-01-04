@@ -10,4 +10,6 @@ router.post('/register-user', accountController.postRegisterUser);
 
 router.get('/login', accountController.getLogin);
 
+router.post('/login-user', accountController.postLogin);
+
 module.exports = router;

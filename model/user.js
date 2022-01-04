@@ -16,15 +16,27 @@ class User {
 
         if (!user) {
             return db.collection('users').insertOne(this);
-        } else {
-            throw 'User already exists';
         }
+            
+        throw 'User already exists!';
     }
 
     static fetchByEmail(email) {
         const db = mongoConnect.getDb();
 
         return db.collection('users').findOne({ email: email });
+    }
+
+    static async checkLogin(email, password) {
+        let user = await User.fetchByEmail(email);
+
+        if (!user) {
+            throw 'Account does not exist, please register!';
+        } else if (user.password !== password) {
+            throw 'Incorrect credentials!';
+        } else {
+            return user;
+        }
     }
 }
 

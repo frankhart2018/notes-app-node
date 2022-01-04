@@ -42,3 +42,26 @@ exports.getLogin = (req, res, next) => {
         js_file: 'login.js',
     });
 };
+
+exports.postLogin = (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    User.checkLogin(email, password)
+        .then(user => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({
+                 "icon": "success",
+                 "title": "Success",
+                 "text": "Login successful!", 
+            }));
+        })
+        .catch(err => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({
+                 "icon": "error",
+                 "title": "Error",
+                 "text": err, 
+            }));
+        });
+};
