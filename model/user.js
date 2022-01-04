@@ -3,11 +3,11 @@ const mongoConnect = require('../utils/dbcon');
 
 
 class User {
-    constructor(name, email, password) {
+    constructor(name, email, password, notes=[]) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.notes = [];
+        this.notes = notes;
     }
 
     async save() {
@@ -22,20 +22,22 @@ class User {
         throw 'User already exists!';
     }
 
-    async addNote(note) {
+    addNote(note) {
         const db = mongoConnect.getDb();
 
         this.notes.push(note);
 
-        if (!user) {
-            throw 'User does not exist!';
-        }
-
-        return db.collection('user').updateOne({ 
+        return db.collection('users').updateOne({ 
             email: this.email 
         }, { 
             $push: { notes: note } 
         });
+    }
+
+    getAllNotes() {
+        const db = mongoConnect.getDb();
+
+        return db.collection('users').findOne({ email: this.email });
     }
 
     static fetchByEmail(email) {

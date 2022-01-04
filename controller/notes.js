@@ -2,12 +2,21 @@ const User = require('../model/user');
 const userSession = require('./user-data');
 
 exports.getNotes = (req, res, next) => {
-    res.render('notes', {
-        pageTitle: 'Notes App::Notes',
-        path: '/notes',
-        js_file: 'notes.js',
-        notes: [],
-    });
+    let user = userSession.getUser();
+    user = new User(user.name, user.email, user.password, user.notes);
+
+    user.getAllNotes()
+        .then(user => {
+            res.render('notes', {
+                pageTitle: 'Notes App::Notes',
+                path: '/notes',
+                js_file: 'notes.js',
+                notes: user.notes,
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
 }
 
 exports.getAddNote = (req, res, next) => {
@@ -32,6 +41,7 @@ exports.postAddNote = (req, res, next) => {
                 "icon": "success",
                 "title": "Success",
                 "text": "Note added successfully!",
+                "url": "/notes",
             }));
         })
         .catch(err => {
