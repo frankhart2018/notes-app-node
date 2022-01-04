@@ -74,6 +74,7 @@ exports.postLogin = (req, res, next) => {
                  "icon": "error",
                  "title": "Error",
                  "text": err, 
+                 "url": "/login",
             }));
         });
 };
