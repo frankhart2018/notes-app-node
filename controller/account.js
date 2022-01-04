@@ -1,11 +1,17 @@
 const User = require('../model/user');
 
+let loggedInUser = null;
+
 exports.getIndex = (req, res, next) => {
-    res.render('index', {
-        pageTitle: 'Notes App::Home',
-        path: '/',
-        js_file: 'index.js',
-    });
+    if (loggedInUser) {
+        res.redirect('/notes');
+    } else {
+        res.render('index', {
+            pageTitle: 'Notes App::Home',
+            path: '/',
+            js_file: 'index.js',
+        });
+    }
 };
 
 exports.postRegisterUser = (req, res, next) => {
@@ -36,11 +42,15 @@ exports.postRegisterUser = (req, res, next) => {
 };
 
 exports.getLogin = (req, res, next) => {
-    res.render('login', {
-        pageTitle: 'Notes App::Login',
-        path: '/login',
-        js_file: 'login.js',
-    });
+    if (loggedInUser) {
+        res.redirect('/notes');
+    } else {
+        res.render('login', {
+            pageTitle: 'Notes App::Login',
+            path: '/login',
+            js_file: 'login.js',
+        });
+    }
 };
 
 exports.postLogin = (req, res, next) => {
@@ -49,6 +59,7 @@ exports.postLogin = (req, res, next) => {
 
     User.checkLogin(email, password)
         .then(user => {
+            loggedInUser = user;
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({
                  "icon": "success",
@@ -65,4 +76,9 @@ exports.postLogin = (req, res, next) => {
                  "text": err, 
             }));
         });
+};
+
+exports.getLogout = (req, res, next) => {
+    loggedInUser = null;
+    res.redirect('/');
 };
