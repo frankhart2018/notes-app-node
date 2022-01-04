@@ -9,7 +9,6 @@ const errorController = require('./controller/error');
 
 const mongoConnect = require('./utils/dbcon');
 
-
 const app = express();
 
 app.set('view engine', 'ejs');
