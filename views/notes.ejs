@@ -1,0 +1,22 @@
+<%- include('./includes/header.ejs') %>
+</head>
+<body>
+    <h1>Notes</h1>
+
+    <div class="container">
+        <% if (notes.length > 0) { %>}
+            <ul>
+                <% for (let note of notes) { %>
+                    <li>
+                        <%= note %>
+                    </li>
+                <% } %>
+            </ul>
+        <% } else { %>
+            <h2>No notes found.</h2>
+        <% } %>
+    </div>
+
+    <%- include('./includes/js-includes.ejs', {js_file: js_file}) %>
+</body>
+</html>

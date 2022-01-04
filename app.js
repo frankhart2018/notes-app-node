@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const accountRoutes = require('./routes/account');
+const notesRoutes = require('./routes/notes');
 
 const errorController = require('./controller/error');
 
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(accountRoutes);
+app.use(notesRoutes);
 
 app.use(errorController.get404);
 
