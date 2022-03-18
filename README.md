@@ -1,6 +1,6 @@
 # notes-app
 
-Node.js application for storing and managing notes using a web interface. Built using Node.js and MongoDB.
+Node.js application for storing and managing notes using a web interface. Built using Node.js and MongoDB. This application demonstrates basic MVC framework in a Node web application.
 
 ## Steps to run
 
